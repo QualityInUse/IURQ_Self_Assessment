@@ -44,7 +44,8 @@ async def file_upload(update, context):
         checker = PDFChecker()
         pdf_file = PDF(file_path)
         pdf_file.delCol()
-        result = checker.checkEv(pdf_file.lowText)
+        pdf_file.parsingQuestions()
+        result = checker.checkEv(pdf_file)
         os.remove(file_path)
 
         await update.message.reply_text(result)
