@@ -1,18 +1,23 @@
 from telegram import Update
 from telegram.ext import ContextTypes, Application, CommandHandler, MessageHandler, filters, ConversationHandler
 import os
-from RQReview import *
+from PDFFile import PDF
+from PDFChecker import PDFChecker
 
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(f'Hello {update.effective_user.first_name}\n'
                                     f"I'm a Reading Questions review bot.\n"
                                     f"I will try to help you improve your future grade and also point "
-                                    f"out the flaws I saw in your work.")
+                                    f"out the flaws I saw in your work.\n"
+                                    f"Write /help to learn how to use a bot")
 
 
 async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text('To start checking your work write the /upload command and follow the instructions')
+    await update.message.reply_text('To start checking your work write the /upload command and follow the instructions.'
+                                    'Your RQ should match the following '
+                                    '[template](https://drive.google.com/drive/folders/11hyrJl_fWnK9zqjehSj7tw_ImVztiGn-?usp=sharing)'
+                                    ', if not, please change', parse_mode='Markdown')
 
 
 # upload commands

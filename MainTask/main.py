@@ -1,6 +1,5 @@
 from dotenv import load_dotenv
-import os
-from telegram.ext import ApplicationBuilder, CommandHandler
+from telegram.ext import ApplicationBuilder
 from botDef import *
 
 
