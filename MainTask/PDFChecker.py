@@ -15,7 +15,7 @@ def _countWords(text):
 
 
 def _countReferences(text):
-    reference_pattern = re.compile(r'\[\d+, p\. \d+]')
+    reference_pattern = re.compile(r'\[\d+, p\. \d+]|\[\d+, *pp. * \d+ *- *\d+]')
     references = re.findall(reference_pattern, text)
     return len(references)
 
