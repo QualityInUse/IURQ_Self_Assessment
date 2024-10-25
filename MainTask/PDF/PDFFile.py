@@ -20,14 +20,16 @@ class PDF:
                 for line in block["lines"]:
                     line_text = " ".join([span["text"] for span in line["spans"]])
                     current_y = line["bbox"][1]
-                    current_x = line["bbox"][0]
 
-                    if (previous_y is not None and abs(current_y - previous_y) > 22) or (previous_y is not None and current_x > 119):
+                    if previous_y is not None and abs(current_y - previous_y) > 14:
                         if current_paragraph:
                             paragraphs.append(current_paragraph.strip())
                         current_paragraph = line_text
                     else:
-                        current_paragraph += " " + line_text
+                        if current_paragraph and current_paragraph[-1] == '-':
+                            current_paragraph = current_paragraph[:-1] + line_text
+                        else:
+                            current_paragraph += ' ' + line_text
 
                     previous_y = current_y
 
@@ -35,19 +37,9 @@ class PDF:
                 paragraphs.append(current_paragraph.strip())
 
         self.text = '\n'.join(paragraphs)
+        self.references = self.text[self.text.rfind('References'):]
+        self.text = self.text[:self.text.rfind('References')]
         self.lowText = self.text.lower()
-
-    def delCol(self) -> None:  # delete collision
-        try:
-            self.text = self.text.replace('  ', ' ')
-            self.text = self.text.replace('   ', ' ')
-            self.text = self.text.replace('( ', '(')
-            self.text = self.text.replace(' )', ')')
-            self.text = self.text.replace('[ ', '[')
-            self.text = self.text.replace(' ]', ']')
-            self.text = self.text.replace(' .', '.')
-        except Exception as e:
-            print(e)
 
     def parsingQuestions(self):
         question_pattern = re.compile(r"(?i)(q\d+\.*.*?)\n", re.S)

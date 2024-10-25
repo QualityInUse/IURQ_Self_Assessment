@@ -1,4 +1,4 @@
-from PDFFile import PDF
+from .PDFFile import PDF
 from typing import Dict
 import re
 
