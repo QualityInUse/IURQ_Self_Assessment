@@ -1,5 +1,3 @@
-import pytest
-import os
 from iu_rq_self_assessment_bot.MainTask.PDF.PDFFile import PDF
 
 
