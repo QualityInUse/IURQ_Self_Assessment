@@ -1,8 +1,8 @@
 from telegram import Update
-from telegram.ext import ContextTypes, Application, CommandHandler, MessageHandler, filters, ConversationHandler
+from telegram.ext import ContextTypes, ConversationHandler
 import os
-from PDFFile import PDF
-from PDFChecker import PDFChecker
+from iu_rq_self_assessment_bot.MainTask.PDF.PDFFile import PDF
+from iu_rq_self_assessment_bot.MainTask.PDF.PDFChecker import PDFChecker
 
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -10,7 +10,7 @@ async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                                     f"I'm a Reading Questions review bot.\n"
                                     f"I will try to help you improve your future grade and also point "
                                     f"out the flaws I saw in your work.\n"
-                                    f"Write /help to learn how to use a bot")
+                                    f"Write /help to learn how to use a bot",)
 
 
 async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -43,7 +43,7 @@ async def file_upload(update, context):
         # checking RQ
         fileId = file.file_id
         new_file = await context.bot.get_file(fileId)
-        file_path = os.path.join('downloads', f"{file.file_name}")
+        file_path = os.path.join('../downloads', f"{file.file_name}")
         await new_file.download_to_drive(file_path)
 
         checker = PDFChecker()

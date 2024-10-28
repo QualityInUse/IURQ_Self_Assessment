@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
-from telegram.ext import ApplicationBuilder
-from botDef import *
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
+from iu_rq_self_assessment_bot.MainTask.Bot.botDef import *
 
 
 if __name__ == '__main__':
