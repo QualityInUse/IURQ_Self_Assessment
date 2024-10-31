@@ -1,4 +1,4 @@
-from iu_rq_self_assessment_bot.MainTask.PDF.PDFFile import PDF
+from iu_rq_self_assessment_bot.MainTask.PDFModule.PDFFile import PDF
 
 
 PDF_FILE_PATH = r"C:\Users\Saveliy\Downloads\Template.pdf"

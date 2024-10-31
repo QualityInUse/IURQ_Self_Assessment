@@ -6,6 +6,7 @@ class PDF:
     text = str()
     lowText = str()
     questions = {}
+    references = str()
 
     def __init__(self, pathToFile):
         doc = fitz.open(pathToFile)

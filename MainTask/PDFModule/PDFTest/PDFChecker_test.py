@@ -1,6 +1,6 @@
 import pytest
 
-from iu_rq_self_assessment_bot.MainTask.PDF.PDFChecker import _countSentences, _countWords, _countReferences
+from iu_rq_self_assessment_bot.MainTask.PDFModule.PDFChecker import _countSentences, _countWords, _countReferences
 
 
 def test_countSentences():

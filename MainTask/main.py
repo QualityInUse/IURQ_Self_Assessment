@@ -1,6 +1,12 @@
 from dotenv import load_dotenv
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
-from iu_rq_self_assessment_bot.MainTask.Bot.botDef import *
+from Bot.botDef import *
+
+import sys
+import os
+
+
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 
 if __name__ == '__main__':
