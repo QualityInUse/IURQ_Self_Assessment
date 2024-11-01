@@ -1,8 +1,9 @@
 from telegram import Update
 from telegram.ext import ContextTypes, ConversationHandler
 import os
-from iu_rq_self_assessment_bot.MainTask.PDF.PDFFile import PDF
-from iu_rq_self_assessment_bot.MainTask.PDF.PDFChecker import PDFChecker
+from PDFModule.PDFChecker import PDFChecker
+
+from PDFModule.PDFFile import PDF
 
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -29,11 +30,15 @@ async def upload_command(update, context):
     return RQ_NUM
 
 
-async def rq_numbers(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def rq_numbers(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data['rqNumber'] = update.message.text
-    await update.message.reply_text(
-        f'Thank you! Now upload the file with your RQ assignment {context.user_data["rqNumber"]}.')
-    return FILE_UPLOAD
+    if 0 < int(context.user_data['rqNumber']) < 8:
+        await update.message.reply_text(
+            f'Thank you! Now upload the file with your RQ assignment {context.user_data["rqNumber"]}.')
+        return FILE_UPLOAD
+    else:
+        await update.message.reply_text('There is no such RQ number.')
+        return ConversationHandler.END
 
 
 async def file_upload(update, context):
@@ -43,19 +48,22 @@ async def file_upload(update, context):
         # checking RQ
         fileId = file.file_id
         new_file = await context.bot.get_file(fileId)
-        file_path = os.path.join('../downloads', f"{file.file_name}")
+        file_path = os.path.join('../MainTask/downloads', f"{file.file_name}")
         await new_file.download_to_drive(file_path)
 
         checker = PDFChecker()
-        pdf_file = PDF(file_path)
-        pdf_file.delCol()
+        pdf_file = PDF(file_path, int(context.user_data['rqNumber']))
         pdf_file.parsingQuestions()
         result = checker.checkEv(pdf_file)
+
+        for elem in result:
+            await update.message.reply_text(elem)
+
         os.remove(file_path)
 
-        await update.message.reply_text(result)
+        # await update.message.reply_text(result)
     else:
-        await update.message.reply_text('Please upload a file with the assignment or convert your file to PDF.')
+        await update.message.reply_text('Please upload a file with the assignment or convert your file to PDFModule.')
     return ConversationHandler.END
 
 
