@@ -57,6 +57,9 @@ class PDFChecker:
 
         return res
 
+    def _checkQuestionsExist(self, Questions: Dict[str, str], RQNum: int):
+        pass
+
     def _checkQuestions(self, Questions: Dict[str, str]) -> Dict[str, str]:
         feedback = {}
 
@@ -86,11 +89,11 @@ class PDFChecker:
         lenText = len(references)
         if lenText != 0:
             if lenText > 10:
-                return '✅ References on site'
+                return '✅ The References part on site'
             else:
-                return '⚠️ Check the References'
+                return '⚠️ Check The References part'
         else:
-            return '⛔ May be you have not the References'
+            return '⛔ May be you have not The References part'
 
     def _checkLinksToReferences(self, answer: str) -> str:  # checking count of the links
         res = ''

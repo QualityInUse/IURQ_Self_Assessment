@@ -5,14 +5,14 @@ PDF_FILE_PATH = r"C:\Users\Saveliy\Downloads\Template.pdf"
 
 
 def test_pdf_initialization():
-    pdf = PDF(PDF_FILE_PATH)
+    pdf = PDF(PDF_FILE_PATH, 1)
     print(pdf.text)
     assert pdf.text is not None
     assert pdf.lowText == pdf.text.lower()
 
 
 def test_pdf_questions():
-    pdf = PDF(PDF_FILE_PATH)
+    pdf = PDF(PDF_FILE_PATH, 1)
     pdf.parsingQuestions()
 
     print(pdf.questions)

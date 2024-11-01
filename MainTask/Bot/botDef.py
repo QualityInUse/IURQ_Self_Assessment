@@ -30,11 +30,15 @@ async def upload_command(update, context):
     return RQ_NUM
 
 
-async def rq_numbers(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def rq_numbers(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data['rqNumber'] = update.message.text
-    await update.message.reply_text(
-        f'Thank you! Now upload the file with your RQ assignment {context.user_data["rqNumber"]}.')
-    return FILE_UPLOAD
+    if 0 < int(context.user_data['rqNumber']) < 8:
+        await update.message.reply_text(
+            f'Thank you! Now upload the file with your RQ assignment {context.user_data["rqNumber"]}.')
+        return FILE_UPLOAD
+    else:
+        await update.message.reply_text('There is no such RQ number.')
+        return ConversationHandler.END
 
 
 async def file_upload(update, context):
@@ -48,7 +52,7 @@ async def file_upload(update, context):
         await new_file.download_to_drive(file_path)
 
         checker = PDFChecker()
-        pdf_file = PDF(file_path)
+        pdf_file = PDF(file_path, int(context.user_data['rqNumber']))
         pdf_file.parsingQuestions()
         result = checker.checkEv(pdf_file)
 

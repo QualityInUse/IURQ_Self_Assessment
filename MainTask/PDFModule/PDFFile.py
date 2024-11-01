@@ -3,12 +3,16 @@ import re
 
 
 class PDF:
+    RQNum = int()
     text = str()
     lowText = str()
     questions = {}
     references = str()
 
-    def __init__(self, pathToFile):
+    def __init__(self, pathToFile: str, RQNum: int):
+
+        self.RQNum = RQNum
+
         doc = fitz.open(pathToFile)
         paragraphs = []
         current_paragraph = ""
