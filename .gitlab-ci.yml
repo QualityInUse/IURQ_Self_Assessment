@@ -14,8 +14,9 @@ build:
 
 test:
   stage: test
-  image: rq-bot
+  image: python:3.12-slim
   script:
-    - pytest
+    - pip install -r MainTask/requirements.txt
+    - pytest MainTask/
   only:
     - main
