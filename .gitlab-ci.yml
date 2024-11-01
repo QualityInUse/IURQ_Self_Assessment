@@ -17,6 +17,7 @@ test:
   image: python:3.12-slim
   script:
     - pip install pytest PyMuPDF
+    - export PYTHONPATH=$PYTHONPATH:$(pwd)/MainTask
     - pytest
   only:
     - main
