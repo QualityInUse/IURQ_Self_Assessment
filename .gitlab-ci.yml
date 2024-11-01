@@ -16,7 +16,7 @@ test:
   stage: test
   image: python:3.12-slim
   script:
-    - pip install -r MainTask/requirements.txt
+    - pip install pytest
     - pytest MainTask/
   only:
     - main
