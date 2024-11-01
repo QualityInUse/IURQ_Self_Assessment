@@ -4,8 +4,9 @@ import re
 
 
 def _countSentences(text):
-    sentences = re.split(r'[.!?]+', text)
+    sentences = re.split(r'(?<!\b\w\.\s)(?<!\b\w\.\w)(?<!\b\w\w\.)[.!?](?=\s+[A-Z])', text)
     sentences = [s.strip() for s in sentences if s.strip()]
+    print(sentences)
     return len(sentences)
 
 
