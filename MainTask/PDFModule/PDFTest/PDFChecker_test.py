@@ -61,3 +61,4 @@ def test_countExample():
 
 def test_PDFChecker_checkLinksToReferences():
     assert CHECKER._checkLinksToReferences(RIGHT_ANSWER) == '✅ I think the links are enough\n'
+

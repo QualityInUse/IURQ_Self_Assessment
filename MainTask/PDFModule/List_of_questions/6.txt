@@ -1,0 +1,17 @@
+Tsui and Karam
+ What are the three main items that must be panned prior to conducting requirements engineering?
+What are the six main dimensions of requirements that you need to address when collecting requirements?
+List four items that are included in the description of high-level business
+What problems do you see in using QFD as defined by Pressman? Give specifics and/or examples.
+What is the difference between verifying and validating requirements? Be specific.
+In the Christel et. al. report:
+What is requirements engineering?
+What are the main activities of requirements engineering?
+What is the goal of requirements engineering?
+What is requirements elicitation?
+Do you agree or disagree with these definitions and why? Are they useful?
+Summarize what Christel et. al. cites as requirements elicitation problems. Be specific. Give examples.
+In the Barbacci et. al. report:
+What are quality attributes?
+How does the Christel paper address quality attribute requirements?
+Does QAW address any of the requirements elicitation problems cited by Christel et. al.? If so, how? If not, why not?

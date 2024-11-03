@@ -1,0 +1,10 @@
+Tsui and Karam
+Look again at the simple process model in Figure 4.1. What development activity would you choose to add first to that process and why?
+Discuss one advantage and one disadvantage of the waterfall process.
+What are the four phases of the Rational Unified Process?
+Explain some of the characteristics of Agile methodologies.
+What is the difference between a lifecycle and a process framework? Give some specifics.
+What assumptions should you make about stakeholders when choosing an incremental model? Explain why you chose these.
+Is there a difference between iterative and incremental models? Explain.
+What lifecycle does the ACDM framework fit under? Explain.
+In the readings above different process frameworks are described. For 2 of the frameworks - In a paragraph summarize the framework. - List what you believe are the strengths and weaknesses. - Under what conditions might you use the framework and why?

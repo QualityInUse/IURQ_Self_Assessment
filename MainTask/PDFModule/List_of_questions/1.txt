@@ -1,0 +1,9 @@
+Tsui and Karam review questions
+Which decisions are those taken by the software engineer about the best ways (processes, techniques and technologies) to achieve the requirements?
+Define the depth versus the breadth issue in software complexity.
+List two technical concerns in developing large systems.
+List two key reasons that caused both software project successes and failures.
+Pressman
+Pressman discusses the problems of legacy software. What does he mean that such software needs to be “re-engineered.” Give some specifics of re-engineering.
+Pressman defines Software Engineering, so, what is the difference between Software Engineering and Computer Science?
+Simply list the separate processes that a development team should manage. Also explain why each is, or is not important.

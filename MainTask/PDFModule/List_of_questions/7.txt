@@ -1,0 +1,5 @@
+In his article “Software Development Risk: Opportunity, Not Problem”, Roger Van Scoy discusses the idea of a risk management paradigm that is composed of a number of cyclical steps. Explain which of the steps in this paradigm do you think is the most important one. Discuss detail why you picked that specific step in the paradigm.
+In his white paper “Software Risk Management” Brian Will discusses the idea of using the Pareto principle in the context of risk management. Explain how one can use the Pareto principle in this context and provide 2 examples (different than the ones given by the author) that might take place in a software development project.
+In his white paper “Software Risk Management” author Brian Will discusses the notion of a magical software development triangle. Do you agree with it, if so why? If not, why not. Explain your opinion.
+In his chapter on risk management, Pressman looks the issue of assessing risk impact. What would be a way to assess the true impact of a risk on a project as a whole? Provide example to support your opinion.
+From the Taran paper, what is the difference between TOS and project goals.
