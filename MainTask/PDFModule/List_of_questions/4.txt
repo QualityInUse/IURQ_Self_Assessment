@@ -1,0 +1,5 @@
+Pressman identifies some misuse of process metrics. Which of these misuses is the most harmful? Explain why.
+Pressman states that “correctness” is “the degree to which the software program performs its required function.” He says that defects per KLOC is the most common measurement for correctness. Do you agree or disagree that this is an appropriate measurement and why?
+Pressman identifies 4 critical attributes of “baseline data.” Which of these is the most critical and why? Be specific.
+What do you think are some negatives to using Goal Question Metrics?
+Looking at the Mota paper, identify what you think would be critical questions to ask at the beginning of a project. Justify why you chose these.

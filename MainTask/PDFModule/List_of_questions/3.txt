@@ -1,0 +1,4 @@
+Do you think Tom Bauer’s response would have been different if the client wasn’t Barry Boehm and instead was someone without software engineering domain knowledge? Explain specifically why. What might Tim Bauer have said instead? What other characteristics about a client would change how you respond?
+What were Barry Boehm’s priorities for his request to Tom Bauer?
+Using your own experience provide an example of where you had to manage customer expectations. Based on this do you agree or not with Barry Boehm?
+The Heskett paper effectively recommends involving customers more in your work. What are some software development activities that would be suited to this? What are some software you don’t think customers should be involved and why?

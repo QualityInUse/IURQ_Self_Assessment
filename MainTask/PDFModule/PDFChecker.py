@@ -1,6 +1,13 @@
 from .PDFFile import PDF
 from typing import Dict, List
 import re
+import os
+
+
+def _readQuestionsFromFile(pathToFile: str) -> List[str]:
+    with open(pathToFile, 'r', encoding='utf-8') as file:
+        questions = [line.strip() for line in file.readlines()]
+    return questions
 
 
 def _countSentences(text):
@@ -32,6 +39,7 @@ class PDFChecker:
     def checkEv(self, PDFFile: PDF) -> List[str]:
 
         CheckRef = self._checkReferences(PDFFile.lowText)
+        CheckQuestions = self._checkQuestionsExist(PDFFile.questions, PDFFile.RQNum)
 
         questionFeedback = self._checkQuestions(PDFFile.questions)
         res = []
@@ -54,12 +62,25 @@ class PDFChecker:
             elif len(question) == 2 and len(questionFeedback[question]) != 0:
                 flag = False
 
-        res.append(f'Verification of RQ structure:\n{CheckRef}')
+        res.append(f'Verification of RQ structure:\n{CheckRef}\n{CheckQuestions}')
 
         return res
 
     def _checkQuestionsExist(self, Questions: Dict[str, str], RQNum: int):
-        pass
+        path_to_questions = os.path.join(os.path.dirname(__file__), f'List_of_questions/{RQNum}.txt')
+        questions = _readQuestionsFromFile(path_to_questions)
+        for question in Questions.keys():
+            q = " ".join(question.split(' ')[1:])
+            if q in questions:
+                questions.pop(questions.index(q))
+
+        if not questions:
+            return '✅ You have written all the questions'
+        else:
+            res = '\n'
+            for question in questions:
+                res += question + '\n'
+            return f'⚠️ You may have forgotten to enter the following questions:{res}'
 
     def _checkQuestions(self, Questions: Dict[str, str]) -> Dict[str, str]:
         feedback = {}
