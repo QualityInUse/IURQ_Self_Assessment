@@ -2,7 +2,7 @@ from telegram import Update
 from telegram.ext import ContextTypes, ConversationHandler
 import os
 from PDFModule.PDFChecker import PDFChecker
-
+from PDFModule.QuestionsCheckerAI import QuestionsChecker
 from PDFModule.PDFFile import PDF
 
 
@@ -51,10 +51,17 @@ async def file_upload(update, context):
         file_path = os.path.join('../MainTask/downloads', f"{file.file_name}")
         await new_file.download_to_drive(file_path)
 
-        checker = PDFChecker()
+        checkerFile = PDFChecker()
         pdf_file = PDF(file_path, int(context.user_data['rqNumber']))
         pdf_file.parsingQuestions()
-        result = checker.checkEv(pdf_file)
+        checkerQuestions = QuestionsChecker(pdf_file.questions)
+
+        question = list(pdf_file.questions.keys())[1]
+        answer = pdf_file.questions[question]
+
+        checkerQuestions.check_the_correct(question, answer)
+
+        result = checkerFile.checkEv(pdf_file)
 
         for elem in result:
             await update.message.reply_text(elem)
