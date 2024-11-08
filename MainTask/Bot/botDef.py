@@ -59,6 +59,10 @@ async def file_upload(update, context):
         for elem in result:
             await update.message.reply_text(elem)
 
+        await update.message.reply_text("After reviewing your RQ check, take a short "
+                                        "[survey](https://forms.gle/nk6ygRTQp75uvdkSA) to improve"
+                                        " the bot's performance", parse_mode='Markdown')
+
         os.remove(file_path)
 
         # await update.message.reply_text(result)
