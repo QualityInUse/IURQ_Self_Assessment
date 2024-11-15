@@ -45,23 +45,21 @@ async def file_upload(update, context):
     file = update.message.document
     if file and file.mime_type == 'application/pdf':
         await update.message.reply_text('Expect to be graded...')
-        # checking RQ
+
+        # Download the file
         fileId = file.file_id
         new_file = await context.bot.get_file(fileId)
         file_path = os.path.join('../MainTask/downloads', f"{file.file_name}")
         await new_file.download_to_drive(file_path)
 
+        # Initialize PDFChecker and QuestionsChecker
         checkerFile = PDFChecker()
         pdf_file = PDF(file_path, int(context.user_data['rqNumber']))
         pdf_file.parsingQuestions()
-        checkerQuestions = QuestionsChecker(pdf_file.questions)
 
-        question = list(pdf_file.questions.keys())[1]
-        answer = pdf_file.questions[question]
-
-        checkerQuestions.check_the_correct(question, answer)
-
+        # Check the evaluation
         result = checkerFile.checkEv(pdf_file)
+        print(result)
 
         for elem in result:
             await update.message.reply_text(elem)
@@ -71,8 +69,6 @@ async def file_upload(update, context):
                                         " the bot's performance", parse_mode='Markdown')
 
         os.remove(file_path)
-
-        # await update.message.reply_text(result)
     else:
         await update.message.reply_text('Please upload a file with the assignment or convert your file to PDFModule.')
     return ConversationHandler.END

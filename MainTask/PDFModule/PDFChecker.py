@@ -3,6 +3,8 @@ from typing import Dict, List
 import re
 import os
 
+from .QuestionsCheckerAI import QuestionsChecker
+
 
 def _readQuestionsFromFile(pathToFile: str) -> List[str]:
     with open(pathToFile, 'r', encoding='utf-8') as file:
@@ -51,16 +53,22 @@ class PDFChecker:
 
         flag = False
 
+        i = 0
+        checkerQuestions = QuestionsChecker(PDFFile)
+        response = checkerQuestions.check_the_correct()
+        print(response)
         for question in questions:
             if len(question) >= 3 and flag:
                 res[-1] += f'\n\n{question}{questionFeedback[question]}'
             else:
-                res.append(f'{question}{questionFeedback[question]}')
+                res.append(f'{question}{questionFeedback[question]}{response[i]}')
 
             if len(question) == 2 and len(questionFeedback[question]) == 0:
                 flag = True
             elif len(question) == 2 and len(questionFeedback[question]) != 0:
                 flag = False
+
+            i += 1
 
         res.append(f'Verification of RQ structure:\n{CheckRef}\n{CheckQuestions}')
 
@@ -89,11 +97,9 @@ class PDFChecker:
             QPattern = re.compile("(?i)(Q\d+(\.*\d+)*)", re.S)
             QName = re.findall(QPattern, question)
             QName = QName[0][0].upper()
-
-            feedExample = self._checkExample(Questions[question])
             feedReferences = self._checkLinksToReferences(Questions[question])
 
-            feedback[QName] = f'\n\n{feedReferences}\n\n{feedExample}\n\n'
+            feedback[QName] = f'\n\n{feedReferences}\n\n'
 
         return feedback
 
