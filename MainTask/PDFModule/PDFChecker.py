@@ -53,22 +53,24 @@ class PDFChecker:
 
         flag = False
 
-        i = 0
+        j = 0
         checkerQuestions = QuestionsChecker(PDFFile)
         response = checkerQuestions.check_the_correct()
         print(response)
-        for question in questions:
+        for i, question in enumerate(questions):
             if len(question) >= 3 and flag:
                 res[-1] += f'\n\n{question}{questionFeedback[question]}'
             else:
-                res.append(f'{question}{questionFeedback[question]}{response[i]}')
+                res.append(f'{question}{questionFeedback[question]}')
+
+            if questionFeedback[question] != '':
+                res[-1] += f'\n\n{response[j]}'
+                j += 1
 
             if len(question) == 2 and len(questionFeedback[question]) == 0:
                 flag = True
             elif len(question) == 2 and len(questionFeedback[question]) != 0:
                 flag = False
-
-            i += 1
 
         res.append(f'Verification of RQ structure:\n{CheckRef}\n{CheckQuestions}')
 

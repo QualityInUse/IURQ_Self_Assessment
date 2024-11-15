@@ -34,7 +34,8 @@ async def rq_numbers(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data['rqNumber'] = update.message.text
     if 0 < int(context.user_data['rqNumber']) < 8:
         await update.message.reply_text(
-            f'Thank you! Now upload the file with your RQ assignment {context.user_data["rqNumber"]}.')
+            f'Thank you! Now upload the file with your RQ assignment {context.user_data["rqNumber"]}. '
+            f'If you made a mistake with the RQ number, write /cancel')
         return FILE_UPLOAD
     else:
         await update.message.reply_text('There is no such RQ number.')
@@ -65,12 +66,12 @@ async def file_upload(update, context):
             await update.message.reply_text(elem)
 
         await update.message.reply_text("After reviewing your RQ check, take a short "
-                                        "[survey](https://forms.gle/nk6ygRTQp75uvdkSA) to improve"
+                                        "[survey](https://forms.gle/tP6tCpGYLze1E9tQ7) to improve"
                                         " the bot's performance", parse_mode='Markdown')
 
         os.remove(file_path)
     else:
-        await update.message.reply_text('Please upload a file with the assignment or convert your file to PDFModule.')
+        await update.message.reply_text('Please upload a file with the assignment or convert your file to PDFModule. ')
     return ConversationHandler.END
 
 
