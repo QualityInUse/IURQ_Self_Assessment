@@ -3,11 +3,11 @@ import re
 
 
 class PDF:
-    RQNum = int()
-    text = str()
-    lowText = str()
-    questions = {}
-    references = str()
+    RQNum: int
+    text: str
+    lowText: str
+    questions: [str, str]
+    references: str
 
     def __init__(self, pathToFile: str, RQNum: int):
 
@@ -26,7 +26,7 @@ class PDF:
                     line_text = " ".join([span["text"] for span in line["spans"]])
                     current_y = line["bbox"][1]
 
-                    if previous_y is not None and abs(current_y - previous_y) > 14:
+                    if previous_y is not None and abs(current_y - previous_y) > 19:
                         if current_paragraph:
                             paragraphs.append(current_paragraph.strip())
                         current_paragraph = line_text
