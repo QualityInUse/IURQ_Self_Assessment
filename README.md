@@ -7,7 +7,7 @@ After that, you need to go to the working directory:
 
 `cd MainTask`
 
-Create a file `.env`, create a constant `TELEGRAM_BOT_TOKEN` in it (you can get this token from @BotFather or ask @CHSaveliy)
+Create a file `.env`, create a constant `TELEGRAM_BOT_TOKEN` in it (you can get this token from @BotFather or ask @CHSaveliy) and create a constant `GOOGLE_API_KEY`
 
 Then execute the following commands:
 
@@ -16,3 +16,5 @@ Then execute the following commands:
 and
 
 `docker run rqbot`
+
+(If you have a problem try run it with VPN)
