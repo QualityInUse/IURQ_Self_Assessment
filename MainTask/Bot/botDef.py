@@ -42,6 +42,38 @@ async def rq_numbers(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return ConversationHandler.END
 
 
+async def gpt_checker_start(update, context):
+    await update.message.reply_text('Now upload the file with your RQ assignment.'
+                                    'If you made mistake, write /cancel.')
+    return FILE_UPLOAD
+
+
+async def gpt_checker_end(update, context):
+    file = update.message.document
+    if file and file.mime_type == 'application/pdf':
+        await update.message.reply_text('Wait for checks...')
+
+        fileId = file.file_id
+        new_file = await context.bot.get_file(fileId)
+        file_path = os.path.join('../MainTask/downloads', f"{file.file_name}")
+        await new_file.download_to_drive(file_path)
+
+        pdf_file = PDF(file_path, int(1))
+
+        ai_checker = QuestionsChecker(pdf_file)
+
+        res = ai_checker.gpt_generating_checking()
+
+        if res == 0:
+            await update.message.reply_text('✅ Everything is fine!')
+        elif res == 1:
+            await update.message.reply_text('✅ Most likely your text has not been generated.')
+        elif res == 2:
+            await update.message.reply_text('⚠️ Your text may have been generated, try editing it.')
+        elif res == 3:
+            await update.message.reply_text('⛔ Your text has been generated, please edit it.')
+
+
 async def file_upload(update, context):
     file = update.message.document
     if file and file.mime_type == 'application/pdf':
