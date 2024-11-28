@@ -60,9 +60,16 @@ async def gpt_checker_end(update, context):
 
         pdf_file = PDF(file_path, int(1))
 
+        pdf_file.parsingQuestions()
+
         ai_checker = QuestionsChecker(pdf_file)
 
         res = ai_checker.gpt_generating_checking()
+
+        os.remove(file_path)
+
+        print(res)
+        res = int(res)
 
         if res == 0:
             await update.message.reply_text('✅ Everything is fine!')

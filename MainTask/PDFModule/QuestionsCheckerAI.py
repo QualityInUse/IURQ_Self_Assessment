@@ -15,16 +15,17 @@ class QuestionsChecker:
         self.model = genai.GenerativeModel("gemini-1.5-flash")
 
     def gpt_generating_checking(self) -> str:
-        question = f"Check this text for GPT generation:"
+        question = f"Check this text for GPT generation:\n"
 
         for q in self._RQ.questions.keys():
             question += f'{q}:{self._RQ.questions[q]}\n'
 
-        question = ("Output one number in response"
-                    f": 0, if the text was not generated, "
-                    f"1 if the probability that the text was generated is very small, "
-                    f"2 if the probability that the text was generated is average"
-                    f", 3, if the text was definitely generated")
+        question += ("Output one number in response"
+                     f": 0, if the text was not generated, "
+                     f"1 if the probability that the text was generated is very small, "
+                     f"2 if the probability that the text was generated is average"
+                     f", 3, if the text was definitely generated. in your answer write only one number without any "
+                     f"additional text")
 
         response = self.model.generate_content(question)
 
