@@ -29,7 +29,7 @@ class QuestionsChecker:
 
         response = self.model.generate_content(question)
 
-        return response.text
+        return response.text[0]
 
     def check_the_correct(self):
         question = (f"You are an extremely picky teacher with years of experience in the "
@@ -41,8 +41,9 @@ class QuestionsChecker:
                     f"[number_ref, pp. number_page-number_page], if there are other links, indicate that "
                     f"they should be in this format. Check whether the answer completely covers the question, "
                     f"whether there are inconsistencies in it, check whether there is an example and whether this "
-                    f"example matches the question. Also note the good points in the student’s work, where the student "
-                    f"answered well")
+                    f"example matches the question. Indicate in your feedback for each question something good that "
+                    f"the student did well in his answer make your answer structured, first describe the positive "
+                    f"aspects of the answer, and then the negative ones")
 
         for q in self._RQ.questions.keys():
             question += f'{q}:{self._RQ.questions[q]}\n'
