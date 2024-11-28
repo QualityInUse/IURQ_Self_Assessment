@@ -18,3 +18,11 @@ and
 `docker run rqbot`
 
 (If you have a problem try run it with VPN)
+
+`/start` - Command to start working with the bot
+
+`/help` - Command to get instructions about the bot
+
+`/upload` - Command to send RQ assignment for verification
+
+`/gptchecking` - Command to check operation on GPT generation

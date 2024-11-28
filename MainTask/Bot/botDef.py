@@ -18,7 +18,16 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text('To start checking your work write the /upload command and follow the instructions.'
                                     'Your RQ should match the following '
                                     '[template](https://drive.google.com/drive/folders/11hyrJl_fWnK9zqjehSj7tw_ImVztiGn-?usp=sharing)'
-                                    ', if not, please change', parse_mode='Markdown')
+                                    ', if not, please change'
+                                    '\n'
+                                    '`/start` - Command to start working with the bot'
+                                    '\n'
+                                    '`/help` - Command to get instructions about the bot '
+                                    '\n'
+                                    '`/upload` - Command to send RQ assignment for verification '
+                                    '\n'
+                                    '`/gptchecking` - Command to check operation on GPT generation',
+                                    parse_mode='Markdown')
 
 
 # upload commands
