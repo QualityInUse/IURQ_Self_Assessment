@@ -1,3 +1,5 @@
+from typing import Dict
+
 import fitz
 import re
 
@@ -6,7 +8,7 @@ class PDF:
     RQNum: int
     text: str
     lowText: str
-    questions: [str, str]
+    questions: Dict[str, str]
     references: str
 
     def __init__(self, pathToFile: str, RQNum: int):

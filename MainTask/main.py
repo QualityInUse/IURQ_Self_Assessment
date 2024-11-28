@@ -30,4 +30,14 @@ if __name__ == '__main__':
 
     app.add_handler(conv_handler)
 
+    conv_handler = ConversationHandler(
+        entry_points=[CommandHandler('gptchecking', gpt_checker_start)],
+        states={
+            FILE_UPLOAD: [MessageHandler(filters.Document.ALL, gpt_checker_end)]
+        },
+        fallbacks=[CommandHandler('cancel', cancel)]
+    )
+
+    app.add_handler(conv_handler)
+
     app.run_polling()
