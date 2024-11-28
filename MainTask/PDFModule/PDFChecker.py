@@ -76,7 +76,7 @@ class PDFChecker:
 
         return res
 
-    def _checkQuestionsExist(self, Questions: Dict[str, str], RQNum: int):
+    def _checkQuestionsExist(self, Questions: Dict[str, str], RQNum: int) -> str:
         path_to_questions = os.path.join(os.path.dirname(__file__), f'List_of_questions/{RQNum}.txt')
         questions = _readQuestionsFromFile(path_to_questions)
         for question in Questions.keys():
